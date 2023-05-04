@@ -1,4 +1,4 @@
-"""Level class.
+"""LevelLogger class.
 
 Log running level of processes.
 """
@@ -7,13 +7,13 @@ Log running level of processes.
 from base_project.common.timer import *
 
 
-class Level:
+class LevelLogger:
     """Code의 level(깊이)을 저장하는 class
 
     :cvar int val: Code의 깊이
     :cvar defaultdict vals: 각 code의 깊이마다 진행도를 저장하는 dict
     """
-    val = 1
+    val  = 1
     vals = defaultdict(lambda: 1)
 
     @classmethod
@@ -51,7 +51,7 @@ def L(fn):
             args (tuple): 함수의 arguments
             fn (callable): 함수
         """
-        logs = f"> {name}| "
+        logs = f"{(LevelLogger.val-1)*' ' + name:15}| "
         if len(args) > 0 and isinstance(args[0], object):
             logs = f"{logs}{fn.__module__.split('.')[-1]}."
         log(f"{logs}{fn.__name__}()")
@@ -67,15 +67,15 @@ def L(fn):
         Returns:
             함수의 return value
         """
-        name = f"{'.'.join([str(Level.vals[l]) for l in range(1, Level.val + 1)]):<10}"
+        name = f"{'.'.join([str(LevelLogger.vals[l]) for l in range(1, LevelLogger.val + 1)]):<10}"
 
         print_fn(name, args, fn)
-        Level.step_into()
+        LevelLogger.step_into()
 
         with Timer(name):
             rst = fn(*args, **kwargs)
 
-        Level.step_out()
+        LevelLogger.step_out()
         return rst
 
     return _log

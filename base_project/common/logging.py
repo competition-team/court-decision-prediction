@@ -13,12 +13,15 @@ class LoggerFactory(metaclass=MetaSingleton):
     Examples:
         >>> from base_project.common.logging import log, dlog
         >>> log("This is printed always")
-        >>> dlog("This is printed only when", "debug=True")
+        >>> dlog("This is printed only when", "--dev")
     """
+    log_path = f"{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%s')}.log"
+    dev      = True
+
     def __init__(self):
         # Stdout handler
         stream_handler = logging.StreamHandler()
-        stream_handler.setLevel(logging.DEBUG if self.debug else logging.INFO)
+        stream_handler.setLevel(logging.DEBUG if self.dev else logging.INFO)
 
         # File handler
         file_handler = logging.FileHandler(filename=self.log_path)
@@ -37,9 +40,9 @@ class LoggerFactory(metaclass=MetaSingleton):
     @classmethod
     def set(cls, args):
         log_dir = yaml2dict(args.configs)['log_dir']
-        cls.log_path = join(log_dir, f"{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%s')}.log")
+        cls.log_path = join(log_dir, cls.log_path)
         os.makedirs(log_dir, exist_ok=True)
-        cls.debug = args.debug
+        cls.dev = args.dev
 
 
 log  = lambda *msgs: LoggerFactory().logger.info(' '.join(lmap(str, msgs)))
