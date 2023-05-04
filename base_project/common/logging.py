@@ -47,3 +47,7 @@ class LoggerFactory(metaclass=MetaSingleton):
 
 log  = lambda *msgs: LoggerFactory().logger.info(' '.join(lmap(str, msgs)))
 dlog = lambda *msgs: LoggerFactory().logger.debug(' '.join(lmap(str, msgs)))
+
+
+def initialize_logger(args):
+    LoggerFactory.set(args)

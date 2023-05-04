@@ -1,18 +1,19 @@
 # base-project: Base project structure for machine learning project
 
 # Summary
-### 1. `common`: Commonly used package
-Use with `from base_project.common import *`
+### 1. Entrypoint
+[`base_project/launch.py`](https://github.com/alchemine/base-project/blob/main/base_project/launch.py)
 
-### 2. `configs.yaml`: Configuration file
-See details in [here](https://abluesnake.tistory.com/128)
+### 2. `common`: Commonly used package
+`from base_project.common import *`
 
-### 3. `poetry`: Package managing tool
-See details in [here](https://alchemine.github.io/2023/04/07/poetry.html)
+### 3. `configs.yaml`: Configuration
+
+### 4. `poetry`: Package managing tool
 
 ---
 
-# 1. Directory structure
+# 1. Directory Structure
 ```bash
 .
 ├── README.md
@@ -30,12 +31,12 @@ See details in [here](https://alchemine.github.io/2023/04/07/poetry.html)
 └── pyproject.toml
 ```
 
-# 2. `common` package
+# 2. `common` Package
 ## 2.1 Import
 ```python
 from base_project.common import *
 ```
-See details in [base_project/common/__init__.py](https://github.com/alchemine/base-project/blob/main/base_project/common/__init__.py).
+See details in [base_project/common/\__init\__.py](https://github.com/alchemine/base-project/blob/main/base_project/common/__init__.py).
 
 ## 2.2 Module Dependency
 ```
@@ -47,17 +48,18 @@ See details in [base_project/common/__init__.py](https://github.com/alchemine/ba
        ↓
     timer.py     : Timer module
        ↓
-level_logging.py : Level Logging module
+level_logging.py : Level logging module
 ```
 
 ## 2.3 Logging
-- `log()`: log to stdout always
-- `dlog()`: log to stdout when development option is present
-    - Log directory: `log_dir` in [`base_project/configs.yaml`](https://github.com/alchemine/base-project/blob/main/base_project/configs.yaml)
-    - Development option: `--dev` in [`base_project/launch.py`](https://github.com/alchemine/base-project/blob/main/base_project/launch.py)
+- `log()`: log to `stdout`
+- `dlog()`: log to `stdout` when development option is present
+  - Development option: `--dev` \
+   See details in [`base_project/launch.py`](https://github.com/alchemine/base-project/blob/main/base_project/launch.py).
+- Log directory: `log_dir` in [`base_project/configs.yaml`](https://github.com/alchemine/base-project/blob/main/base_project/configs.yaml)
 
 ```python
-from base_project.common.logging import LoggerFactory, log, dlog
+from base_project.common.logging import log, dlog, initialize_logger
 from argparse import ArgumentParser
 
 
@@ -66,7 +68,7 @@ parser.add_argument('--dev', action='store_true', help='Development mode or not'
 parser.add_argument('--configs', default='configs.yaml', help='Configuration file path (yaml)')
 args = parser.parse_args()
 
-LoggerFactory.set(args)  # initialization
+initialize_logger(args)
 
 if args.dev:
     log("STDOUT O, FILE O")
@@ -89,7 +91,6 @@ else:
         ```
         * Code1        | 1.00s (0.02m)
       ```
-
 - Decorator
     - `@Timer(name)`
     - `@T`

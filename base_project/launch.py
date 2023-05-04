@@ -37,8 +37,8 @@ if __name__ == '__main__':
     parser.add_argument('--configs', default='configs.yaml', help='Configuration file path (yaml)')
     args = parser.parse_args()
 
-    # 2. Set logger
-    LoggerFactory.set(args)
+    # 2. Initialize logger
+    initialize_logger(args)
 
     # 3. Start
     main(args)
