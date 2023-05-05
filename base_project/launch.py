@@ -3,6 +3,8 @@ from base_project.common import *
 
 @D
 def main(args):
+    log("This log is log()")
+    dlog("This log is dlog()")
     main1()
     main2()
 @D
@@ -11,13 +13,6 @@ def main1():
     main12()
 @D
 def main11():
-    main111()
-    main112()
-@D
-def main111():
-    return
-@D
-def main112():
     return
 @D
 def main12():
