@@ -3,6 +3,28 @@
 # Summary
 ### 1. Entrypoint
 [`base_project/launch.py`](https://github.com/alchemine/base-project/blob/main/base_project/launch.py)
+```bash
+$ git clone https://github.com/alchemine/base-project.git
+$ cd base-project
+$ python -m base_project.launch --dev
+```
+
+```
+  1            | __main__.main()
+This log is log()
+This log is dlog()
+  1.1          | main1()
+  1.1.1        | main11()
+* 1.1.1        | 0.00s (0.00m)
+  1.1.2        | main12()
+* 1.1.2        | 0.00s (0.00m)
+* 1.1          | 0.00s (0.00m)
+  1.2          | main2()
+  1.2.1        | main21()
+* 1.2.1        | 0.00s (0.00m)
+* 1.2          | 0.00s (0.00m)
+* 1            | 0.00s (0.00m)
+```
 
 ### 2. `common`: Commonly used package
 `from base_project.common import *`
@@ -15,7 +37,7 @@
 
 # 1. Directory Structure
 ```bash
-.
+base-project
 ├── README.md
 ├── base_project
 │   ├── common
@@ -97,7 +119,7 @@ else:
       ```python
       from base_project.common.timer import Timer, T
         
-      @Timer()
+      @Timer("fn1")
       def fn1():
           sleep(1)
             
@@ -110,7 +132,7 @@ else:
       ```
 
       ```
-      * Elapsed time | 1.00s (0.02m)
+      * fn1          | 1.00s (0.02m)
       * Elapsed time | 1.00s (0.02m)
       ```
 
