@@ -1,31 +1,31 @@
 from base_project.common import *
 
 
-@L
+@D
 def main(args):
     main1()
     main2()
-@L
+@D
 def main1():
     main11()
     main12()
-@L
+@D
 def main11():
     main111()
     main112()
-@L
+@D
 def main111():
     return
-@L
+@D
 def main112():
     return
-@L
+@D
 def main12():
     return
-@L
+@D
 def main2():
     main21()
-@L
+@D
 def main21():
     return
 
@@ -42,5 +42,3 @@ if __name__ == '__main__':
 
     # 3. Start
     main(args)
-
-

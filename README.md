@@ -21,7 +21,7 @@
 │   ├── common
 │   │   ├── __init__.py
 │   │   ├── env.py
-│   │   ├── level_logging.py
+│   │   ├── depth_logging.py
 │   │   ├── logging.py
 │   │   ├── timer.py
 │   │   └── utils.py
@@ -48,7 +48,7 @@ See details in [base_project/common/\__init\__.py](https://github.com/alchemine/
        ↓
     timer.py     : Timer module
        ↓
-level_logging.py : Level logging module
+depth_logging.py : Depth logging module
 ```
 
 ## 2.3 Logging
@@ -114,36 +114,36 @@ else:
       * Elapsed time | 1.00s (0.02m)
       ```
 
-# 2.5 Level Logging
-- Decorator: `@L`
+# 2.5 Depth Logging
+- Decorator: `@D`
     ```python
-    from base_project.common.level_logging import L
+    from base_project.common.depth_logging import D
       
-    @L
+    @D
     def main(args):
         main1()
         main2()
-    @L
+    @D
     def main1():
         main11()
         main12()
-    @L
+    @D
     def main11():
         main111()
         main112()
-    @L
+    @D
     def main111():
         return
-    @L
+    @D
     def main112():
         return
-    @L
+    @D
     def main12():
         return
-    @L
+    @D
     def main2():
         main21()
-    @L
+    @D
     def main21():
         return
         
@@ -151,7 +151,7 @@ else:
     ```
 
     ```
-    1              | main()
+    1              | __main__.main()
      1.1           | main1()
       1.1.1        | main11()
        1.1.1.1     | main111()
@@ -163,8 +163,8 @@ else:
     * 1.1.2        | 0.00s (0.00m)
     * 1.1          | 0.00s (0.00m)
      1.2           | main2()
-      1.2.3        | main21()
-    * 1.2.3        | 0.00s (0.00m)
+      1.2.1        | main21()
+    * 1.2.1        | 0.00s (0.00m)
     * 1.2          | 0.00s (0.00m)
     * 1            | 0.00s (0.00m)
     ```
