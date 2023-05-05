@@ -36,7 +36,7 @@
 ```python
 from base_project.common import *
 ```
-See details in [base_project/common/\__init\__.py](https://github.com/alchemine/base-project/blob/main/base_project/common/__init__.py).
+See details in [base_project/common/\_\_init\_\_.py](https://github.com/alchemine/base-project/blob/main/base_project/common/__init__.py).
 
 ## 2.2 Module Dependency
 ```
@@ -55,7 +55,7 @@ depth_logging.py : Depth logging module
 - `log()`: log to `stdout`
 - `dlog()`: log to `stdout` when development option is present
   - Development option: `--dev` \
-   See details in [`base_project/launch.py`](https://github.com/alchemine/base-project/blob/main/base_project/launch.py).
+  See details in [`base_project/launch.py`](https://github.com/alchemine/base-project/blob/main/base_project/launch.py).
 - Log directory: `log_dir` in [`base_project/configs.yaml`](https://github.com/alchemine/base-project/blob/main/base_project/configs.yaml)
 
 ```python
