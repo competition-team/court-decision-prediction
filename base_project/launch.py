@@ -34,7 +34,7 @@ if __name__ == '__main__':
     # 1. Parsing
     parser = ArgumentParser()
     parser.add_argument('--dev', action='store_true', help='Development mode or not')
-    parser.add_argument('--configs', default='configs.yaml', help='Configuration file path (yaml)')
+    parser.add_argument('--configs', default='base_project/configs.yaml', help='Configuration file path (yaml)')
     args = parser.parse_args()
 
     # 2. Initialize logger
