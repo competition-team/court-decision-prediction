@@ -4,18 +4,18 @@ Log running processes.
 """
 # Author: Dongjin Yoon <djyoon0223@gmail.com>
 
-from base_project.common.utils import *
+from court_decision_prediction.common.utils import *
 
 
 class LoggerFactory(metaclass=MetaSingleton):
     """Logger Factory.
 
     Examples:
-        >>> from base_project.common.logging import log, dlog
+        >>> from court_decision_prediction.common.logging import log, dlog
         >>> log("This is printed always")
         >>> dlog("This is printed only when", "--dev")
     """
-    log_path = f"{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%s')}.log"
+    filename = f"{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%s')}.log"
     dev      = True
 
     def __init__(self):
@@ -24,7 +24,7 @@ class LoggerFactory(metaclass=MetaSingleton):
         stream_handler.setLevel(logging.DEBUG if self.dev else logging.INFO)
 
         # File handler
-        file_handler = logging.FileHandler(filename=self.log_path)
+        file_handler = logging.FileHandler(filename=self.filename)
         file_handler.setLevel(logging.DEBUG)
 
         # Merge handlers
@@ -38,16 +38,16 @@ class LoggerFactory(metaclass=MetaSingleton):
         self.logger = logger
 
     @classmethod
-    def set(cls, args):
-        log_dir = yaml2dict(args.configs)['log_dir']
-        cls.log_path = join(log_dir, cls.log_path)
-        os.makedirs(log_dir, exist_ok=True)
-        cls.dev = args.dev
+    def set(cls, yaml_path):
+        configs = yaml2dict(yaml_path)
+        cls.log_path = join(configs['log_dir'], cls.filename)
+        os.makedirs(cls.log_path, exist_ok=True)
+        cls.dev = configs['dev']
 
 
 log  = lambda *msgs: LoggerFactory().logger.info(' '.join(lmap(str, msgs)))
 dlog = lambda *msgs: LoggerFactory().logger.debug(' '.join(lmap(str, msgs)))
 
 
-def initialize_logger(args):
-    LoggerFactory.set(args)
+def initialize_logger(yaml_path):
+    LoggerFactory.set(yaml_path)

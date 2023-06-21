@@ -4,7 +4,7 @@ Log depth of code.
 """
 # Author: Dongjin Yoon <djyoon0223@gmail.com>
 
-from base_project.common.timer import *
+from court_decision_prediction.common.timer import *
 
 
 class DepthManager(contextlib.ContextDecorator):

@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "base-project"
+name = "court-decision-prediction"
 version = "0.1.0"
-description = ""
+description = "court-decision-prediction"
 authors = ["Dongjin Yoon <djyoon0223@gmail.com>"]
 readme = "README.md"
-packages = [{include = "base_project"}]
+packages = [{include = "court_decision_prediction"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"

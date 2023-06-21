@@ -2,7 +2,7 @@
 
 Examples
 --------
->>> from base_project.common import *
+>>> from court_decision_prediction.common import *
 """
 # Author: Dongjin Yoon <djyoon0223@gmail.com>
 

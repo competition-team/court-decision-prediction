@@ -4,7 +4,7 @@ Commonly used functions and classes are here.
 """
 # Author: Dongjin Yoon <djyoon0223@gmail.com>
 
-from base_project.common.env import *
+from court_decision_prediction.common.env import *
 
 
 # Short function
@@ -28,7 +28,7 @@ def lstarmap(fn, *arrs, scheduler=None):
         tasks = [delayed(fn)(*es) for es in zip(*arrs)]
         return list(compute(*tasks, scheduler=scheduler))
 
-def yaml2dict(path):
+def yaml2dict(path='configs.yaml'):
     with open(path, 'r') as f:
         config = yaml.safe_load(f)
     return config

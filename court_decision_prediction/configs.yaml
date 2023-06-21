@@ -1,0 +1,7 @@
+# Path
+log_dir: logs
+data_dir: data/open
+
+
+# Experimental Parameters
+dev: true
