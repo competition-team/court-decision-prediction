@@ -7,4 +7,5 @@ class PATH:
     data   = join(root, yaml2dict(yaml)['data_dir'])
     train  = join(data, 'train.csv')
     test   = join(data, 'test.csv')
-    submit = join(data, 'sample_submission.csv')
+    sample = join(data, 'sample_submission.csv')
+    submit = join(root, 'submission')
