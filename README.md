@@ -2,7 +2,14 @@
 [https://dacon.io/competitions/official/236112](https://dacon.io/competitions/official/236112)
 
 
-# 1. Dataset info
+# 1. Install Dependencies
+Use [Poetry](https://alchemine.github.io/2023/04/07/poetry.html)
+```
+poetry install --no-root 
+```
+
+
+# 2. Dataset info
 ```
 train.csv [파일]
 ID : 사건 샘플 ID
