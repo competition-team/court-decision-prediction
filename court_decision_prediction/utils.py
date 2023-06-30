@@ -65,3 +65,14 @@ def get_vector(vectorizer, df, train_mode):
 
     X = np.concatenate([X_party1.todense(), X_party2.todense(), X_facts.todense()], axis=1)
     return np.asarray(X)
+
+
+def seed_everything(seed: int = 42):
+    random.seed(seed)
+    np.random.seed(seed)
+    os.environ["PYTHONHASHSEED"] = str(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)  # type: ignore
+    torch.backends.cudnn.deterministic = True  # type: ignore
+    torch.backends.cudnn.benchmark = True  # type: ignore
+seed_everything()
