@@ -1,5 +1,6 @@
 from court_decision_prediction.common import *
 from sklearn.preprocessing import OneHotEncoder
+import random
 
 
 class PATH:
@@ -75,4 +76,3 @@ def seed_everything(seed: int = 42):
     torch.cuda.manual_seed(seed)  # type: ignore
     torch.backends.cudnn.deterministic = True  # type: ignore
     torch.backends.cudnn.benchmark = True  # type: ignore
-seed_everything()
